@@ -1,1 +1,1 @@
-console.log('Sistema de Barbería v1');
+console.log('Sistema de Barbería - Citas');
