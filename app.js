@@ -1,0 +1,1 @@
+console.log('Sistema de Barbería v1');
