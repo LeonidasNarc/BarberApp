@@ -1,0 +1,68 @@
+/* Estilos básicos como los haría un programador junior */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+/* Caja principal del login */
+.login-box {
+    width: 300px;
+    background-color: #ffffff;
+    margin: 100px auto; /* Centrado básico usando margin auto */
+    padding: 20px;
+    border: 2px solid #000000; /* Borde simple negro */
+    border-radius: 5px; /* Bordes un poco redondeados */
+}
+
+/* Títulos */
+.login-box h2 {
+    text-align: center;
+    color: #000000;
+    margin-top: 0;
+}
+
+.login-box h3 {
+    text-align: center;
+    color: #555555;
+    font-size: 16px;
+}
+
+/* Grupo de inputs */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 90%; /* Ancho casi completo pero dejando espacio */
+    padding: 8px;
+    border: 1px solid #999999;
+}
+
+/* Estilo del botón */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #000000; /* Botón negro para estilo barbería */
+    color: #ffffff; /* Letra blanca */
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Efecto cuando pasas el mouse por el botón */
+button:hover {
+    background-color: #444444;
+}
