@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Citas - Barbería</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>BarberApp</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="../clientes/index.html">Clientes</a></li>
+                    <li><a href="#" class="active">Citas</a></li>
+                    <li><a href="#">Servicios</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" class="logout-btn">Cerrar Sesión</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-wrapper">
+
+                <!-- Formulario de nueva cita -->
+                <div class="card">
+                    <h2>Nueva Cita</h2>
+                    <form id="formCita">
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="clienteSelect">Cliente:</label>
+                                <select id="clienteSelect" required>
+                                    <option value="">-- Selecciona un cliente --</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="servicio">Servicio:</label>
+                                <select id="servicio" required>
+                                    <option value="">-- Selecciona un servicio --</option>
+                                    <option value="Corte de cabello">Corte de cabello</option>
+                                    <option value="Arreglo de barba">Arreglo de barba</option>
+                                    <option value="Corte + Barba">Corte + Barba</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fecha">Fecha:</label>
+                                <input type="date" id="fecha" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hora">Hora:</label>
+                                <input type="time" id="hora" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Registrar Cita</button>
+                    </form>
+                </div>
+
+                <!-- Citas del día -->
+                <div class="card">
+                    <div class="section-header">
+                        <h2>Citas del Día</h2>
+                        <span id="fechaHoy" class="fecha-badge"></span>
+                    </div>
+
+                    <!-- Filtros de estado -->
+                    <div class="filtros">
+                        <button class="filtro-btn active" data-filtro="todos">Todas</button>
+                        <button class="filtro-btn" data-filtro="pendiente">Pendientes</button>
+                        <button class="filtro-btn" data-filtro="atendido">Atendidas</button>
+                        <button class="filtro-btn" data-filtro="cancelado">Canceladas</button>
+                    </div>
+
+                    <!-- Lista de citas -->
+                    <div id="listaCitas">
+                        <p class="empty-msg">No hay citas registradas para hoy.</p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

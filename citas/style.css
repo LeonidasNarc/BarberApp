@@ -1,0 +1,388 @@
+/* ============================================================
+   ESTILOS - Módulo de Citas (feature/citas)
+   Mantiene consistencia con clientes/style.css
+   ============================================================ */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+}
+
+/* ------------------------------------------------------------------
+   LAYOUT APP (igual al módulo de clientes)
+------------------------------------------------------------------ */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ------------------------------------------------------------------
+   SIDEBAR (igual al módulo de clientes)
+------------------------------------------------------------------ */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #34495e;
+}
+
+.sidebar-header h2 {
+    color: #ecf0f1;
+    margin: 0;
+}
+
+.sidebar-nav {
+    flex-grow: 1;
+    padding: 20px 0;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 5px;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 15px 20px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+    background-color: #34495e;
+    border-left: 4px solid #3498db;
+}
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid #34495e;
+}
+
+.logout-btn {
+    display: block;
+    text-align: center;
+    color: #e74c3c;
+    text-decoration: none;
+    padding: 10px;
+    border: 1px solid #e74c3c;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* ------------------------------------------------------------------
+   CONTENIDO PRINCIPAL
+------------------------------------------------------------------ */
+.main-content {
+    flex-grow: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.page-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ------------------------------------------------------------------
+   CARD (contenedor de secciones)
+------------------------------------------------------------------ */
+.card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+/* ------------------------------------------------------------------
+   FORMULARIO
+------------------------------------------------------------------ */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 0;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+input[type="date"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fafafa;
+}
+
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus {
+    outline: none;
+    border-color: #3498db;
+    background-color: #fff;
+}
+
+/* ------------------------------------------------------------------
+   BOTONES
+------------------------------------------------------------------ */
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+}
+
+.btn-eliminar {
+    padding: 7px 14px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s;
+}
+
+.btn-eliminar:hover {
+    background-color: #c0392b;
+}
+
+/* ------------------------------------------------------------------
+   ENCABEZADO DE SECCIÓN CON BADGE DE FECHA
+------------------------------------------------------------------ */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    margin-bottom: 0;
+}
+
+.fecha-badge {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* ------------------------------------------------------------------
+   FILTROS DE ESTADO
+------------------------------------------------------------------ */
+.filtros {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filtro-btn {
+    padding: 7px 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f4f4f9;
+    color: #555;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+    font-weight: normal;
+    width: auto;
+    margin-top: 0;
+}
+
+.filtro-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.filtro-btn.active {
+    background-color: #2c3e50;
+    color: white;
+    border-color: #2c3e50;
+}
+
+/* ------------------------------------------------------------------
+   LISTA DE CITAS
+------------------------------------------------------------------ */
+#listaCitas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.empty-msg {
+    color: #999;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+/* ------------------------------------------------------------------
+   TARJETA DE CITA
+------------------------------------------------------------------ */
+.cita-card {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 14px 16px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    transition: box-shadow 0.2s;
+}
+
+.cita-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Borde izquierdo de color según estado */
+.cita-card.estado-pendiente {
+    border-left: 4px solid #f39c12;
+}
+
+.cita-card.estado-atendido {
+    border-left: 4px solid #27ae60;
+}
+
+.cita-card.estado-cancelado {
+    border-left: 4px solid #e74c3c;
+}
+
+.cita-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
+
+/* Hora destacada */
+.cita-hora {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    min-width: 55px;
+}
+
+.cita-detalle {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.cita-cliente {
+    font-weight: bold;
+    color: #333;
+    font-size: 15px;
+}
+
+.cita-servicio {
+    color: #666;
+    font-size: 13px;
+}
+
+/* ------------------------------------------------------------------
+   BADGE DE ESTADO
+------------------------------------------------------------------ */
+.estado-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+
+.estado-badge.estado-pendiente {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #f39c12;
+}
+
+.estado-badge.estado-atendido {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #27ae60;
+}
+
+.estado-badge.estado-cancelado {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #e74c3c;
+}
+
+/* ------------------------------------------------------------------
+   ACCIONES DE LA TARJETA
+------------------------------------------------------------------ */
+.cita-acciones {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
