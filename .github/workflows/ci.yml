@@ -1,0 +1,39 @@
+# .github/workflows/ci.yml
+# Prueba de integración - Módulo de Citas
+
+name: CI - Prueba de Integración Citas
+
+on:
+  push:
+    branches:
+      - feature/citas
+      - develop
+      - main
+  pull_request:
+    branches:
+      - develop
+      - main
+
+jobs:
+  test:
+    name: Ejecutar pruebas de citas
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descarga el código del repositorio
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      # 2. Configura Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # 3. Instala Jest
+      - name: Instalar dependencias
+        run: npm install
+
+      # 4. Ejecuta las pruebas
+      - name: Ejecutar pruebas de integración
+        run: npm test
