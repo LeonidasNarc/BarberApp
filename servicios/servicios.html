@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Servicios - BarberApp</title>
+    <link rel="stylesheet" href="servicios.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>BarberApp</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="../clientes/index.html">Clientes</a></li>
+                    <li><a href="../citas/index.html">Citas</a></li>
+                    <li><a href="#" class="active">Servicios</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" class="logout-btn">Cerrar Sesión</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header">
+                <h1 class="page-title">Gestión de Servicios</h1>
+                <button id="btnNuevoServicio" class="btn-primary">Nuevo Servicio</button>
+            </header>
+
+            <div class="panel">
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Servicio</th>
+                                <th>Precio</th>
+                                <th>Descripción</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaServicios">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="modalServicio" class="modal">
+        <div class="modal-content panel">
+            <div class="modal-header">
+                <h2>Registrar Servicio</h2>
+                <button id="btnCerrarModal" class="btn-close">&times;</button>
+            </div>
+            <form id="registroForm">
+                <div id="formGrid" class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="nombre">Nombre del Servicio:</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Corte clásico" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="precio">Precio:</label>
+                        <input type="number" id="precio" name="precio" placeholder="Ej. 25.00" step="0.01" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="descripcion">Descripción:</label>
+                        <input type="text" id="descripcion" name="descripcion" placeholder="Ej. Corte a tijera con perfilado" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn-primary full-width">Guardar Servicio</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="servicios.js"></script>
+</body>
+</html>
