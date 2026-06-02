@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Clientes - Barbería</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="clientes.css">
 </head>
+
 <body>
     <div class="app-layout">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <h2>BarberApp</h2>
@@ -16,46 +17,41 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li><a href="#" class="active">Clientes</a></li>
-                    <li><a href="../citas/index.html">Citas</a></li>
+                    <li><a href="../reservas/reservas.html">Reservas</a></li>
                     <li><a href="#">Servicios</a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
-                <a href="../index.html" class="logout-btn">Cerrar Sesión</a>
+                <a href="../login/login.html" class="logout-btn">Cerrar Sesión</a>
             </div>
         </aside>
-
-        <!-- Main Content -->
         <main class="main-content">
             <div class="container">
                 <h2>Registro de Clientes</h2>
-                
-                <!-- Formulario para registrar cliente -->
                 <form id="registroForm">
                     <div class="form-group">
                         <label for="nombre">Nombre del Cliente:</label>
                         <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="telefono">Número de Teléfono:</label>
                         <input type="tel" id="telefono" name="telefono" placeholder="Ej. 987654321" required>
                     </div>
-                    
+
                     <button type="submit">Registrar Cliente</button>
                 </form>
 
                 <div class="list-container">
                     <h3>Clientes Registrados</h3>
-                    <!-- Lista donde se mostrarán los clientes -->
                     <ul id="listaClientes">
-                        <!-- Los clientes se agregarán aquí dinámicamente -->
                     </ul>
                 </div>
             </div>
         </main>
     </div>
 
-    <script src="index.js"></script>
+    <script src="clientes.js"></script>
 </body>
+
 </html>
