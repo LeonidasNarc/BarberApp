@@ -286,6 +286,39 @@ body {
     color: #111111;
 }
 
+.confirm-body {
+    padding: 0 24px 12px;
+    color: #333333;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 0 24px 24px;
+}
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    border: 1px solid #d0d0d0;
+    color: #333333;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0;
+    border-color: #b0b0b0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .form-grid {
     display: grid;
     grid-template-columns: 1fr;

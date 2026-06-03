@@ -3,9 +3,14 @@ const listaServicios = document.getElementById('listaServicios');
 const modalServicio = document.getElementById('modalServicio');
 const btnNuevoServicio = document.getElementById('btnNuevoServicio');
 const btnCerrarModal = document.getElementById('btnCerrarModal');
+const confirmModal = document.getElementById('confirmModal');
+const btnCerrarConfirm = document.getElementById('btnCerrarConfirm');
+const btnCancelarEliminar = document.getElementById('btnCancelarEliminar');
+const btnConfirmarEliminar = document.getElementById('btnConfirmarEliminar');
 
 let servicios = JSON.parse(localStorage.getItem('servicios')) || [];
 let servicioEditandoIndex = -1;
+let servicioEliminarIndex = -1;
 
 function mostrarServicios() {
     listaServicios.innerHTML = '';
@@ -39,11 +44,13 @@ function mostrarServicios() {
 }
 
 function eliminarServicio(index) {
-    if (confirm('¿Está seguro de eliminar este servicio?')) {
-        servicios.splice(index, 1);
-        localStorage.setItem('servicios', JSON.stringify(servicios));
-        mostrarServicios();
-    }
+    servicioEliminarIndex = index;
+    confirmModal.classList.add('active');
+}
+
+function cerrarConfirmModal() {
+    servicioEliminarIndex = -1;
+    confirmModal.classList.remove('active');
 }
 
 function editarServicio(index) {
@@ -80,6 +87,21 @@ window.addEventListener('click', (e) => {
         formulario.reset();
         servicioEditandoIndex = -1;
     }
+    if (e.target === confirmModal) {
+        cerrarConfirmModal();
+    }
+});
+
+btnCerrarConfirm.addEventListener('click', cerrarConfirmModal);
+btnCancelarEliminar.addEventListener('click', cerrarConfirmModal);
+btnConfirmarEliminar.addEventListener('click', () => {
+    if (servicioEliminarIndex === -1) {
+        return;
+    }
+    servicios.splice(servicioEliminarIndex, 1);
+    localStorage.setItem('servicios', JSON.stringify(servicios));
+    cerrarConfirmModal();
+    mostrarServicios();
 });
 
 formulario.addEventListener('submit', function (evento) {

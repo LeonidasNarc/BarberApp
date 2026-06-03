@@ -17,7 +17,7 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li><a href="../clientes/clientes.html">Clientes</a></li>
-                    <li><a href="../citas/index.html">Citas</a></li>
+                    <li><a href="../citas/citas.html">Citas</a></li>
                     <li><a href="#" class="active">Servicios</a></li>
                 </ul>
             </nav>
@@ -77,6 +77,22 @@
                     <button type="submit" class="btn-primary full-width">Guardar Servicio</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div id="confirmModal" class="modal">
+        <div class="modal-content panel">
+            <div class="modal-header">
+                <h2>Confirmar eliminación</h2>
+                <button id="btnCerrarConfirm" class="btn-close">&times;</button>
+            </div>
+            <div class="confirm-body">
+                <p>¿Está seguro de que desea eliminar este servicio?</p>
+            </div>
+            <div class="modal-footer confirm-actions">
+                <button id="btnCancelarEliminar" type="button" class="btn-secondary">Cancelar</button>
+                <button id="btnConfirmarEliminar" type="button" class="btn-primary btn-danger">Eliminar</button>
+            </div>
         </div>
     </div>
 
