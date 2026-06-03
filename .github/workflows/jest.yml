@@ -1,9 +1,12 @@
-name: Pruebas Jest Clientes
+name: Pruebas Jest
 
 on:
   push:
     branches:
       - feature/clientes
+      - feature/citas
+      - feature/servicios
+      - main
 
 jobs:
   test:
