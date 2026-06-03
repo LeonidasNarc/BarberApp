@@ -3,14 +3,23 @@ const listaClientes = document.getElementById('listaClientes');
 const modalCliente = document.getElementById('modalCliente');
 const btnNuevoCliente = document.getElementById('btnNuevoCliente');
 const btnCerrarModal = document.getElementById('btnCerrarModal');
+const searchInput = document.getElementById('searchClientes');
 
 let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
 let clienteEditandoIndex = -1;
 
-function mostrarClientes() {
+function mostrarClientes(filterTerm = '') {
     listaClientes.innerHTML = '';
+    const termino = filterTerm.trim().toLowerCase();
+    const clientesAMostrar = termino
+        ? clientes.filter(cliente => {
+            const nombreCompleto = `${cliente.nombres} ${cliente.apellidos}`.toLowerCase();
+            const dni = cliente.dni.toLowerCase();
+            return nombreCompleto.includes(termino) || dni.includes(termino);
+        })
+        : clientes;
 
-    if (clientes.length === 0) {
+    if (clientesAMostrar.length === 0) {
         const tr = document.createElement('tr');
         tr.innerHTML = `<td colspan="4" class="text-center" style="padding: 30px; color: #888;">No hay clientes registrados en el sistema.</td>`;
         listaClientes.appendChild(tr);
@@ -113,7 +122,13 @@ formulario.addEventListener('submit', function (evento) {
     formulario.reset();
     clienteEditandoIndex = -1;
     modalCliente.classList.remove('active');
-    mostrarClientes();
+    mostrarClientes(searchInput ? searchInput.value : '');
 });
 
-mostrarClientes();
+if (searchInput) {
+    searchInput.addEventListener('input', () => {
+        mostrarClientes(searchInput.value);
+    });
+}
+
+mostrarClientes(searchInput ? searchInput.value : '');
