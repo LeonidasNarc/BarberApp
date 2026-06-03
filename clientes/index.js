@@ -3,10 +3,19 @@ const listaClientes = document.getElementById('listaClientes');
 const modalCliente = document.getElementById('modalCliente');
 const btnNuevoCliente = document.getElementById('btnNuevoCliente');
 const btnCerrarModal = document.getElementById('btnCerrarModal');
+const confirmModal = document.getElementById('confirmModal');
+const btnCerrarConfirm = document.getElementById('btnCerrarConfirm');
+const btnCancelarEliminar = document.getElementById('btnCancelarEliminar');
+const btnConfirmarEliminar = document.getElementById('btnConfirmarEliminar');
+const alertModal = document.getElementById('alertModal');
+const btnCerrarAlert = document.getElementById('btnCerrarAlert');
+const btnAceptarAlert = document.getElementById('btnAceptarAlert');
+const alertMessage = document.getElementById('alertMessage');
 const searchInput = document.getElementById('searchClientes');
 
 let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
 let clienteEditandoIndex = -1;
+let clienteEliminarIndex = -1;
 
 function mostrarClientes(filterTerm = '') {
     listaClientes.innerHTML = '';
@@ -26,7 +35,7 @@ function mostrarClientes(filterTerm = '') {
         return;
     }
 
-    clientes.forEach((cliente, index) => {
+    clientesAMostrar.forEach((cliente, index) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>
@@ -49,11 +58,22 @@ function mostrarClientes(filterTerm = '') {
 }
 
 function eliminarCliente(index) {
-    if (confirm('¿Está seguro de eliminar este cliente?')) {
-        clientes.splice(index, 1);
-        localStorage.setItem('clientes', JSON.stringify(clientes));
-        mostrarClientes();
-    }
+    clienteEliminarIndex = index;
+    confirmModal.classList.add('active');
+}
+
+function cerrarConfirmModal() {
+    clienteEliminarIndex = -1;
+    confirmModal.classList.remove('active');
+}
+
+function mostrarAlertModal(mensaje) {
+    alertMessage.textContent = mensaje;
+    alertModal.classList.add('active');
+}
+
+function cerrarAlertModal() {
+    alertModal.classList.remove('active');
 }
 
 function editarCliente(index) {
@@ -92,7 +112,28 @@ window.addEventListener('click', (e) => {
         formulario.reset();
         clienteEditandoIndex = -1;
     }
+    if (e.target === confirmModal) {
+        cerrarConfirmModal();
+    }
+    if (e.target === alertModal) {
+        cerrarAlertModal();
+    }
 });
+
+btnCerrarConfirm.addEventListener('click', cerrarConfirmModal);
+btnCancelarEliminar.addEventListener('click', cerrarConfirmModal);
+btnConfirmarEliminar.addEventListener('click', () => {
+    if (clienteEliminarIndex === -1) {
+        return;
+    }
+    clientes.splice(clienteEliminarIndex, 1);
+    localStorage.setItem('clientes', JSON.stringify(clientes));
+    cerrarConfirmModal();
+    mostrarClientes(searchInput ? searchInput.value : '');
+});
+
+btnCerrarAlert.addEventListener('click', cerrarAlertModal);
+btnAceptarAlert.addEventListener('click', cerrarAlertModal);
 
 formulario.addEventListener('submit', function (evento) {
     evento.preventDefault();
@@ -112,6 +153,11 @@ formulario.addEventListener('submit', function (evento) {
     };
 
     if (clienteEditandoIndex === -1) {
+        const existeDNI = clientes.some(cliente => cliente.dni.toLowerCase() === dni.toLowerCase());
+        if (existeDNI) {
+            mostrarAlertModal('Ya existe un cliente registrado con este DNI');
+            return;
+        }
         clientes.push(clienteData);
     } else {
         clientes[clienteEditandoIndex] = clienteData;
