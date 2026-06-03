@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Clientes - Barbería</title>
+    <title>Gestión de Clientes - BarberApp</title>
     <link rel="stylesheet" href="clientes.css">
 </head>
 
@@ -16,21 +16,26 @@
             </div>
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="../clientes/index.html" class="active">Clientes</a></li>
+                    <li><a href="#" class="active">Clientes</a></li>
                     <li><a href="../citas/index.html">Citas</a></li>
-                    <li><a href="../servicios/servicios.html">Servicios</a></li>
+                    <li><a href="#">Servicios</a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
-                <a href="../login/login.html" class="logout-btn">Cerrar Sesión</a>
+                <a href="../index.html" class="logout-btn">Cerrar Sesión</a>
             </div>
         </aside>
+
         <main class="main-content">
             <header class="page-header">
                 <h1 class="page-title">Gestión de Clientes</h1>
                 <button id="btnNuevoCliente" class="btn-primary">Nuevo Cliente</button>
             </header>
+
             <div class="panel">
+                <div class="panel-header" style="padding: 24px; border-bottom: 1px solid #eeeeee;">
+                    <input id="searchClientes" type="text" placeholder="Buscar por nombre o DNI..." style="width:100%; padding:14px; border:1px solid #e0e0e0; border-radius:8px; font-size:15px; background:#f9f9f9;" />
+                </div>
                 <div class="table-responsive">
                     <table class="data-table">
                         <thead>
@@ -44,48 +49,78 @@
                         <tbody id="listaClientes">
                         </tbody>
                     </table>
-                    <div id="modalCliente" class="modal">
-                        <div class="modal-content panel">
-                            <div class="modal-header">
-                                <h2>Registrar Cliente</h2>
-                                <button id="btnCerrarModal" class="btn-close">&times;</button>
-                            </div>
-                            <form id="registroForm">
-                                <div id="formGrid" class="form-grid">
-                                    <div class="form-group">
-                                        <label for="nombres">Nombres:</label>
-                                        <input type="text" id="nombres" name="nombres" placeholder="Ej. Leonidas"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="apellidos">Apellidos:</label>
-                                        <input type="text" id="apellidos" name="apellidos" placeholder="Ej. Narcisos"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="dni">DNI:</label>
-                                        <input type="text" id="dni" name="dni" placeholder="Ej. 12345678" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="telefono">Teléfono:</label>
-                                        <input type="tel" id="telefono" name="telefono" placeholder="Ej. 987654321"
-                                            required>
-                                    </div>
-                                    <div class="form-group full-width">
-                                        <label for="email">Email:</label>
-                                        <input type="email" id="email" name="email" placeholder="Ej. leo@correo.com"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn-primary full-width">Guardar Cliente</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <script src="index.js"></script>
+                </div>
+            </div>
         </main>
     </div>
+
+    <div id="modalCliente" class="modal">
+        <div class="modal-content panel">
+            <div class="modal-header">
+                <h2>Registrar Cliente</h2>
+                <button id="btnCerrarModal" class="btn-close">&times;</button>
+            </div>
+            <form id="registroForm">
+                <div id="formGrid" class="form-grid">
+                    <div class="form-group">
+                        <label for="nombres">Nombres:</label>
+                        <input type="text" id="nombres" name="nombres" placeholder="Ej. Leonidas" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos:</label>
+                        <input type="text" id="apellidos" name="apellidos" placeholder="Ej. Narcisos" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dni">DNI:</label>
+                        <input type="text" id="dni" name="dni" placeholder="Ej. 12345678" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Ej. 987654321" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Ej. leo@correo.com" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn-primary full-width">Guardar Cliente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirmModal" class="modal">
+        <div class="modal-content panel">
+            <div class="modal-header">
+                <h2>Confirmar eliminación</h2>
+                <button id="btnCerrarConfirm" class="btn-close">&times;</button>
+            </div>
+            <div class="confirm-body">
+                <p>¿Está seguro de que desea eliminar este cliente?</p>
+            </div>
+            <div class="modal-footer confirm-actions">
+                <button id="btnCancelarEliminar" type="button" class="btn-secondary">Cancelar</button>
+                <button id="btnConfirmarEliminar" type="button" class="btn-primary btn-danger">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="alertModal" class="modal">
+        <div class="modal-content panel">
+            <div class="modal-header">
+                <h2>Cliente duplicado</h2>
+                <button id="btnCerrarAlert" class="btn-close">&times;</button>
+            </div>
+            <div class="confirm-body">
+                <p id="alertMessage"></p>
+            </div>
+            <div class="modal-footer" style="justify-content: flex-end;">
+                <button id="btnAceptarAlert" type="button" class="btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
     <script src="clientes.js"></script>
 </body>
 
