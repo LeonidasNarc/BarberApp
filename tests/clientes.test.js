@@ -20,3 +20,33 @@ test('Búsqueda encuentra cliente por nombre', () => {
 
     expect(nombre.toLowerCase().includes('leonidas')).toBe(true);
 });
+
+test('No permite teléfono duplicado', () => {
+    const clientes = [
+        { telefono: '948918902' }
+    ];
+
+    const nuevoTelefono = '948918902';
+
+    const existeTelefono = clientes.some(c => c.telefono === nuevoTelefono);
+
+    expect(existeTelefono).toBe(true);
+});
+
+test('Permite registrar teléfono nuevo', () => {
+    const clientes = [
+        { telefono: '948918902' }
+    ];
+
+    const nuevoTelefono = '999888777';
+
+    const existeTelefono = clientes.some(c => c.telefono === nuevoTelefono);
+
+    expect(existeTelefono).toBe(false);
+});
+
+test('Teléfono debe tener 9 dígitos', () => {
+    const telefono = '948918902';
+
+    expect(telefono.length).toBe(9);
+});

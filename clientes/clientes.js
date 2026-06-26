@@ -153,15 +153,31 @@ formulario.addEventListener('submit', function (evento) {
     };
 
     if (clienteEditandoIndex === -1) {
-        const existeDNI = clientes.some(cliente => cliente.dni.toLowerCase() === dni.toLowerCase());
-        if (existeDNI) {
-            mostrarAlertModal('Ya existe un cliente registrado con este DNI');
-            return;
-        }
-        clientes.push(clienteData);
-    } else {
-        clientes[clienteEditandoIndex] = clienteData;
+    const existeDNI = clientes.some(cliente => cliente.dni.toLowerCase() === dni.toLowerCase());
+    if (existeDNI) {
+        mostrarAlertModal('Ya existe un cliente registrado con este DNI');
+        return;
     }
+
+    const existeTelefono = clientes.some(cliente => cliente.telefono === telefono);
+    if (existeTelefono) {
+        mostrarAlertModal('Ya existe un cliente registrado con este número telefónico');
+        return;
+    }
+
+    clientes.push(clienteData);
+} else {
+    const existeTelefono = clientes.some((cliente, index) =>
+        index !== clienteEditandoIndex && cliente.telefono === telefono
+    );
+
+    if (existeTelefono) {
+        mostrarAlertModal('Ya existe un cliente registrado con este número telefónico');
+        return;
+    }
+
+    clientes[clienteEditandoIndex] = clienteData;
+}
 
     localStorage.setItem('clientes', JSON.stringify(clientes));
 
